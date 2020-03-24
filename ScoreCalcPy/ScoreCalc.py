@@ -1,5 +1,6 @@
 print("Welcome to Speed Cup Score Calculator")
 
+stage = input("\nWhich stage of the tournament is it\n> ")
 matchNumber = int(input("\nMatch ##?\n> "))
 teamBlue = input("\nWhat is the name of the blue team?\n> ")
 teamRed = input("\nWhat is the name of the red team\n> ")
@@ -51,11 +52,13 @@ isTied = False
 
 while bluePoints < BOn // 2 + 1 and redPoints < BOn // 2 + 1:
 
-    if order % 2 != 0:
+    if isTied:
+        print(f"!mp map {mapIDs2[maps2.index('TB')]}")
+    elif order % 2 != 0:
         mapPick = input("\nTeam Blue's pick!\n> ")
     else:
         mapPick = input("\nTeam Red's pick!\n> ")
-    while True:
+    while not isTied:
         if mapPick in blueBan or mapPick in redBan:
             mapPick = input("Map banned\n> ")
         elif mapPick not in maps and mapPick not in maps2:
@@ -85,17 +88,17 @@ while bluePoints < BOn // 2 + 1 and redPoints < BOn // 2 + 1:
     print(f"{teamBlue} {bluePoints} | {redPoints} {teamRed}")
     print("-------------------------------------------------")
 
-    if bluePoints > redPoints:
+    if bluePoints > BOn // 2:
         print(f"{teamBlue} wins!")
+    elif redPoints > BOn // 2:
+        print(f"{teamRed} wins!")
     elif bluePoints == BOn // 2 and redPoints == BOn // 2:
         print("\nTiebreaker time!")
         isTied = True
-    else:
-        print(f"{teamRed} wins!")
 
 matchLink = input("\nMatch Link\n> ")
 
-print(f"""__**Semifinals**__
+print(f"""__**{stage}**__
 **Match {matchNumber}:** {matchLink}
 
 Results: {teamBlue} **{bluePoints} | {redPoints}** {teamRed}
